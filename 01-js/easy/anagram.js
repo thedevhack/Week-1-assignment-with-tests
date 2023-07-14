@@ -8,6 +8,16 @@
 */
 
 function isAnagram(str1, str2) {
+  
+  splitted_str1 = ((((str1.toLowerCase()).split("")).sort()).join(""));
+  splitted_str2 = ((((str2.toLowerCase()).split("")).sort()).join(""));
+
+  if (splitted_str1 === splitted_str2){
+    return true;
+  }else{
+    return false;
+  }
+
 
 }
 

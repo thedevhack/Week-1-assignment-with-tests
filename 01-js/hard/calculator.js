@@ -17,6 +17,129 @@
   - `npm run test-calculator`
 */
 
-class Calculator {}
+class Calculator {
+  constructor(){
+    this.result = 0;
+  }
+
+  add(number){
+    this.result += number;
+  }
+  subtract(number){
+    this.result -= number;
+  }
+  multiply(number){
+    this.result *= number;
+  }
+  divide(number){
+    this.result /= number;
+  }
+  clear(){
+    this.result = 0;
+  }
+  getResult(){
+    return this.result;
+  }
+  calculate(expr){
+    expr_without_spaces = []
+    expr_brokedown = expr.split("");
+    expr_brokedown.forEach((char) => {
+        if (char != " "){
+          expr_without_spaces.push(char)
+        }
+    })
+    currentExpr = []
+    currentOperator = []
+    openParanthesis = 0
+    // orig_expr = expr_without_spaces.join("")
+    expr_without_spaces.forEach((char) => {
+      if (char >= "0" && char <= "9"){
+        if (currentExpr.length > 0){
+          if (currentOperator.length > 0){
+
+          }
+        }
+        currentExpr.push(char)
+      
+      }else if (char == "+" || char == "-" || char == "*" || char == "/"){
+        currentOperator.push(char)
+      }
+      else{
+        throw "Such Inputs not Allowed"
+      }
+
+    })
+  }
+
+}
 
 module.exports = Calculator;
+
+
+
+function open_brackets_finder(idx, str1){
+  more_open_paranthesis = 0
+  for (let i = idx; i<str1.length;i++){
+    if (str1[i] == ")"){
+      if (more_open_paranthesis == 0){
+        return i
+      }else{
+        more_open_paranthesis -= 1;
+      }
+    }else if (str1[i] == "("){
+      more_open_paranthesis += 1;
+    }
+  }
+  
+}
+
+function calculate(expr){
+    var expr_without_spaces = []
+    expr_brokedown = expr.split("");
+    expr_brokedown.forEach((char) => {
+        if (char != " "){
+          expr_without_spaces.push(char)
+        }
+    })
+    expr_without_spaces = expr_without_spaces.join("")
+    console.log(expr_without_spaces);
+    expr_without_brackets = []
+    close_idx = -1
+    for (let i=0; i<= expr_without_spaces.length;i++){
+      if (close_idx == -1){
+        if (expr_without_spaces[i] == "("){
+        close_idx = open_brackets_finder(i,expr_without_spaces)
+         }
+      }else{
+        if (i > close_idx){
+          
+        }
+      }
+      
+    }
+  
+  
+    currentExpr = []
+    currentOperator = []
+    openParanthesis = 0
+    // orig_expr = expr_without_spaces.join("") 
+    expr_without_spaces.forEach((char) => {
+      if (char >= "0" && char <= "9"){
+        if (currentExpr.length > 0){
+          if (currentOperator.length > 0){
+            /[!\s_]+/
+          }
+        }
+        currentExpr.push(char)
+      
+      }else if (char == "+" || char == "-" || char == "*" || char == "/"){
+        currentOperator.push(char)
+      }
+      else{
+        throw "Such Inputs not Allowed";
+      }
+
+    })
+  }
+
+calculate('10 +   2 *    (   6 - (4 + 1) / 2) + 7')
