@@ -4,5 +4,8 @@
  */
 
 function sleep (seconds) {
-
+    return new Promise((resolve) => {
+        setTimeout(resolve, seconds)
+    })
 }
+sleep(3000).then(() => {console.log("Successfully Halted for seconds")})
